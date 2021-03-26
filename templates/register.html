@@ -1,0 +1,58 @@
+<h1>Register</h1>
+<title>Viduncoin – Register</title>
+
+<!-- <form method="POST" action="">
+    <label>Full Name: </label><input value={{request.form.name}}>
+    <br></br>
+    <label>Email: </label><input value={{request.form.email}}>
+    <br></br>
+    <label>Username: </label><input value={{request.form.username}}>
+    <br></br>
+    <label>Password: </label><input value={{request.form.password}}>
+    <br></br>
+    <label>Confirm Password: </label><input value={{request.form.confirm}}>
+    <br></br>
+    <button type="submit" class="btn btn-primary btn-block">Register</button>
+</form> -->
+
+<form method="POST" action="">
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-label-group">
+              <label for="fullName">Full Name: </label>
+            <input type="text" id="inputUsername" name="name" class="form-control" placeholder="Full Name" required="required" autofocus="autofocus" value={{request.form.name}}>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-label-group">
+              <label for="inputUsername">Username: </label>
+            <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required="required" autofocus="autofocus" value={{request.form.username}}>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-label-group">
+          <label for="inputEmail">Email address: </label>
+        <input type="text" id="inputEmail" name="email" class="form-control" placeholder="Email" required="required" autofocus="autofocus" value={{request.form.email}}>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-md-6">
+          <div class="form-label-group">
+              <label for="inputPassword">Password: </label>
+            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="required" autofocus="autofocus" value={{request.form.password}}>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="form-label-group">
+              <label for="confirmPassword">Confirm Password: </label>
+            <input type="password" id="confirmPassword" name="confirm" class="form-control" placeholder="Confirm Password" required="required" autofocus="autofocus" value={{request.form.confirm}}>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary btn-block">Register</button>
+  </form>
