@@ -7,6 +7,7 @@ from flask_mysqldb import MySQL
 from sqlhelper import *
 from forms import *
 from functools import wraps
+import time
 
 app = Flask(__name__)
 
@@ -85,6 +86,43 @@ def login():
 
     return render_template('login.html')
 
+@app.route("/transaction", methods = ['GET', 'POST'])
+@isLoggedIn
+def transaction():
+    form = SendMoneyForm(request.form)
+    balance = get_balance(session.get('username'))
+
+    if request.method == 'POST':
+        try:
+            send_money(session.get('username'), form.username.data, form.amount.data)
+            flash("Money sent!", "success")
+
+        except Exception as e:
+            flash(str(e), 'danger')
+
+        return redirect(url_for('transaction'))
+
+    return render_template("transaction.html", balance=balance, form=form, page='transaction')
+
+# @app.route("/buy", methods = ['GET', 'POST'])
+# @isLoggedIn
+# def buy():
+#     form = BuyForm(request.form)
+#     balance = get_balance(session.get('username'))
+
+#     if request.method == 'POST':
+#         try:
+#             send_money("BANK", session.get('username'), form.amount.data)
+#             flash("Money sent!", "success")
+
+#         except Exception as e:
+#             flash(str(e), 'danger')
+
+#         return redirect(url_for('dashboard'))
+
+#     return render_template('buy.html', balance=balance, form=form, page='buy')
+            
+
 @app.route("/logout")
 @isLoggedIn
 def logout():
@@ -95,11 +133,14 @@ def logout():
 @app.route("/dashboard")
 @isLoggedIn
 def dashboard():
-    return render_template('dashboard.html', session=session)
+    blockchain = get_blockchain().chain
+    ct = time.strftime("%I:M %p")
+    balance = get_balance(session.get('username'))
+
+    return render_template('dashboard.html', balance=balance, session=session, ct=ct, blockchain=blockchain, page='dashboard')
 
 @app.route("/")
 def index():
-    # send_money("vidunvj", "MeatyMeterWeiner", 4.2)
     return render_template('index.html')
 
 if __name__ == '__main__':

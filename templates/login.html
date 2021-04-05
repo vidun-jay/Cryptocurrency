@@ -5,7 +5,13 @@
 
   <head>
 
-    <title>Vishvacoin - Login</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Shockwave - Login</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename = 'images/favicon.ico') }}">
 
     <link href="{{url_for('static',filename='vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
@@ -18,21 +24,21 @@
 
     <div class="container">
       <div class="card card-login mx-auto mt-5">
-        <h1>Login</h1>
+        <div class="card-header">Login</div>
         <div class="card-body">
 
           {% include 'includes/_messages.html' %}
           <form action="" method="POST">
             <div class="form-group">
               <div class="form-label-group">
-                <label for="inputUsername">Username: </label>
                 <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" required="required" autofocus="autofocus" value={{request.form.username}}>
+                <label for="inputUsername">Username</label>
               </div>
             </div>
             <div class="form-group">
               <div class="form-label-group">
-                <label for="inputPassword">Password: </label>
                 <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required="required" autofocus="autofocus" value={{request.form.password}}>
+                <label for="inputPassword">Password</label>
               </div>
             </div>
             <button type="submit" class="btn btn-primary btn-block">Login</button>
@@ -40,9 +46,7 @@
 
 
           <div class="text-center">
-            <br></br>
             <a class="d-block small mt-3" href="register">Don't have an account? Register now.</a>
-            <br></br>
             <a class="d-block small mt-3" href="/">Home Page</a>
           </div>
         </div>
