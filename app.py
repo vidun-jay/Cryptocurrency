@@ -12,7 +12,7 @@ import time
 app = Flask(__name__)
 
 # configuring SQL stuff
-app.config['MYSQL_HOST'] = 'localhost'
+app.config['MYSQL_HOST'] = '192.168.2.16'
 app.config['MYSQL_USER'] = 'root'
 app.config['MYSQL_PASSWORD'] = 'password'
 app.config['MYSQL_DB'] = 'crypto'
@@ -145,4 +145,4 @@ def index():
 
 if __name__ == '__main__':
     app.secret_key = 'secret123'
-    app.run(host='0.0.0.0', port=80, debug = True)
+    app.run(host='192.168.2.16', port=80, debug = True)
