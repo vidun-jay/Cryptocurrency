@@ -12,9 +12,9 @@ import time
 app = Flask(__name__)
 
 # configuring SQL stuff
-app.config['MYSQL_HOST'] = '192.168.2.16'
+app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_PASSWORD'] = ''
 app.config['MYSQL_DB'] = 'crypto'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
@@ -104,24 +104,24 @@ def transaction():
 
     return render_template("transaction.html", balance=balance, form=form, page='transaction')
 
-# @app.route("/buy", methods = ['GET', 'POST'])
-# @isLoggedIn
-# def buy():
-#     form = BuyForm(request.form)
-#     balance = get_balance(session.get('username'))
+@app.route("/buy", methods = ['GET', 'POST'])
+@isLoggedIn
+def buy():
+    form = BuyForm(request.form)
+    balance = get_balance(session.get('username'))
 
-#     if request.method == 'POST':
-#         try:
-#             send_money("BANK", session.get('username'), form.amount.data)
-#             flash("Money sent!", "success")
+    if request.method == 'POST':
+        try:
+            send_money("BANK", session.get('username'), form.amount.data)
+            flash("Money sent!", "success")
 
-#         except Exception as e:
-#             flash(str(e), 'danger')
+        except Exception as e:
+            flash(str(e), 'danger')
 
-#         return redirect(url_for('dashboard'))
+        return redirect(url_for('dashboard'))
 
-#     return render_template('buy.html', balance=balance, form=form, page='buy')
-            
+    return render_template('buy.html', balance=balance, form=form, page='buy')
+
 
 @app.route("/logout")
 @isLoggedIn
@@ -144,5 +144,7 @@ def index():
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.secret_key = 'secret123'
-    app.run(host='192.168.2.16', port=80, debug = True)
+    app.secret_key = 'password123'
+    app.run(host='localhost', port=80, debug = True)
+
+    # send_money('BANK', 'vidun', 100)
